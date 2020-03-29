@@ -32,6 +32,7 @@ export default StyleSheet.create({
     color: '#737380'
   },
   incidentList: {
+    flex: 1,
     marginTop: 32
   },
   incident: {

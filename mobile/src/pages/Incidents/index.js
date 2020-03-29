@@ -13,28 +13,41 @@ export default function Detail () {
   const [incidents, setIncidents] = useState([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isRefreshing, setIsRefreshing] = useState(false)
 
   useEffect(() => {
-    loadIncidents()
+    refreshIncidents()
   }, [])
 
+  function refreshIncidents () {
+    setIsRefreshing(true)
+
+    api.get(`/incidents`)
+        .then((response) => {
+          setIncidents(response.data)
+          setTotal(response.headers['x-total-count'])
+          setPage(2)
+          setIsRefreshing(false)
+        })
+  }
+
   function loadIncidents () {
-    if (loading) {
+    if (isLoading) {
       return
     }
 
     if (total > 0 && incidents.length === total) {
       return
     } else {
-      setLoading(true)
+      setIsLoading(true)
 
       api.get(`/incidents?page=${page}`)
         .then((response) => {
           setIncidents([...incidents, ...response.data])
           setTotal(response.headers['x-total-count'])
           setPage(page + 1)
-          setLoading(false)
+          setIsLoading(false)
         })
     }
   }
@@ -61,6 +74,8 @@ export default function Detail () {
           style={styles.incidentList}
           data={incidents}
           keyExtractor={incident => String(incident.id)}
+          refreshing={isRefreshing}
+          onRefresh={refreshIncidents}
           onEndReached={loadIncidents}
           onEndReachedThreshold={0.2}
           renderItem={({ item: incident }) => (

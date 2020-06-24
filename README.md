@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  Aplicação desenvolvida durante a 11ª edição da Semana Omnistack, promovida pela Rocketseat, utilizando a stack React, Node, SQLite e React Native para a versão mobile.
+  A aplicação foi desenvolvida durante a 11ª edição da Semana Omnistack, promovida pela Rocketseat, utilizando a stack React, Node, SQLite e React Native para a versão mobile.
 </p>
 
 # Rodando a aplicação

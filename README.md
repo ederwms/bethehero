@@ -12,7 +12,7 @@
 
 # Rodando a aplicação
 
-Execute o comando ```npm instal``` nas pastas frontend, backend e mobile
+Execute o comando ```npm install``` nas pastas frontend, backend e mobile
 
 Para rodar a versão web, execute ```npm start``` nas pastas backend e frontent
 
